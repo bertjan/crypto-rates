@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>nl.openvalue</groupId>
-	<artifactId>cryptorates</artifactId>
+	<artifactId>crypto-rates</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
