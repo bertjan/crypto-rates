@@ -1,6 +1,6 @@
 package nl.openvalue.cryptorates.data;
 
-import nl.openvalue.cryptorates.coinmarketcap.CoinMarketCapService;
+import nl.openvalue.cryptorates.coinmarketcap.CoinMarketCapClient;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.List;
 public class CryptoCurrencyService {
 
     private CryptoCurrencyRepository repository;
-    private CoinMarketCapService service;
+    private CoinMarketCapClient restClient;
 
-    public CryptoCurrencyService(CryptoCurrencyRepository repository, CoinMarketCapService service) {
+    public CryptoCurrencyService(CryptoCurrencyRepository repository, CoinMarketCapClient restClient) {
         this.repository = repository;
-        this.service = service;
+        this.restClient = restClient;
     }
 
     public List<CryptoCurrency> findAll() {
@@ -30,7 +30,7 @@ public class CryptoCurrencyService {
     }
 
     public void updateFromCoinMarketCap() {
-        replaceAll(service.fetchAll());
+        replaceAll(restClient.fetchData().data);
     }
 
     public CryptoCurrency findBySymbol(String symbol) {

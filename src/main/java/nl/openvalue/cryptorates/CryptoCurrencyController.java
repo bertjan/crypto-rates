@@ -18,6 +18,7 @@ public class CryptoCurrencyController {
         this.service = service;
     }
 
+    // TODO BJS: replace with OpenAPI spec
     @GetMapping("/")
     public ResponseEntity<String> apiRoot() {
         return ResponseEntity.ok().body("available API's: /{symbol} (return single), /all (returns all), /clear (clears database), /update (updates from CoinMarketCap)");

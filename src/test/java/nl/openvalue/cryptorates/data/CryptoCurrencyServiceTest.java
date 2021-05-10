@@ -1,7 +1,5 @@
 package nl.openvalue.cryptorates.data;
 
-import nl.openvalue.cryptorates.data.CryptoCurrency;
-import nl.openvalue.cryptorates.data.CryptoCurrencyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,14 +23,18 @@ class CryptoCurrencyServiceTest {
 
     @Test
     void updateWithNonEmptyList() {
-        var cryptosToCreate = List.of(new CryptoCurrency("name", "symbol", "slug"));
+        var crypto = new CryptoCurrency();
+        crypto.name = "name";
+        crypto.symbol = "symbol";
+        crypto.slug= "slug";
+        var cryptosToCreate = List.of(crypto);
         service.replaceAll(cryptosToCreate);
         var retrievedCryptos = service.findAll();
         assertThat(retrievedCryptos.size()).isOne();
         var retrievedCrypto = retrievedCryptos.get(0);
-        assertThat(retrievedCrypto.getName()).isEqualTo("name");
-        assertThat(retrievedCrypto.getSymbol()).isEqualTo("symbol");
-        assertThat(retrievedCrypto.getSlug()).isEqualTo("slug");
+        assertThat(retrievedCrypto.name).isEqualTo("name");
+        assertThat(retrievedCrypto.symbol).isEqualTo("symbol");
+        assertThat(retrievedCrypto.slug).isEqualTo("slug");
     }
 
 
@@ -43,12 +45,7 @@ class CryptoCurrencyServiceTest {
 
         service.updateFromCoinMarketCap();
 
-        var cryptos = service.findAll();
         assertThat(service.findAll().size()).isNotZero();
-
-        System.out.println("first result: " +cryptos.get(0));
-
     }
-
 
 }

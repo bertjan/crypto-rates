@@ -12,8 +12,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 public class CryptoCurrencyRepositoryTest {
 
-    Logger logger = LoggerFactory.getLogger(CryptoCurrencyRepositoryTest.class);
-
     @Autowired
     private CryptoCurrencyRepository repository;
 
@@ -25,19 +23,15 @@ public class CryptoCurrencyRepositoryTest {
     @Test
     void doTest() {
         var crypto = new CryptoCurrency();
-        crypto.setName("crypto1-name");
-        crypto.setSlug("crypto1-slug");
-        crypto.setSymbol("crypto1-symbol");
+        crypto.name = "crypto1-name";
+        crypto.slug = "crypto1-slug";
+        crypto.symbol ="crypto1-symbol";
         var savedCrypto = repository.save(crypto);
 
-        assertThat(savedCrypto.getId()).isNotNull();
-        assertThat(savedCrypto.getName()).isEqualTo(crypto.getName());
-        assertThat(savedCrypto.getSlug()).isEqualTo(crypto.getSlug());
-        assertThat(savedCrypto.getSymbol()).isEqualTo(crypto.getSymbol());
-
-        assertThat(savedCrypto).isEqualTo(repository.findById(savedCrypto.getId()).get());
-
-
+        assertThat(savedCrypto.id).isNotNull();
+        assertThat(savedCrypto.name).isEqualTo(crypto.name);
+        assertThat(savedCrypto.slug).isEqualTo(crypto.slug);
+        assertThat(savedCrypto.symbol).isEqualTo(crypto.symbol);
     }
 
 }
