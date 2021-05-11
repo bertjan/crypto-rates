@@ -10,5 +10,6 @@ This app depends on a Postgres server running on localhost.
 connect to Postgres via Docker:
 * `docker exec -it postgres psql -h localhost -U postgres`
 
-
+API documentation:
+- http://localhost:8080/swagger-ui/index.html
 
